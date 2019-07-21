@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# builds the boi
+docker build -t flask-example:latest ../
+
+# and runs it
+docker run -d -p 5000:5000 --name flask-example-container flask-example
+
+# prints the container
+docker ps -a | grep flask-example-container
+
+echo "*  *  *  *  *"
+echo "You are in the container shell now!"
+echo "*  *  *  *  *"
+
+# testing command, porting you in the container
+docker exec -it flask-example-container bash
+
