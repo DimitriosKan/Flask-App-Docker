@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# builds the boi
-docker build -t flask-example:latest ../
-
-# and runs it
-docker run -d -p 5000:5000 --name flask-example-container flask-example
-
-# prints the container
-docker ps -a | grep flask-example-container
-
 echo "*  *  *  *  *"
-echo "You are in the container shell now!"
+echo "Current running process"
 echo "*  *  *  *  *"
 
-# testing command, porting you in the container
-docker exec -it flask-example-container bash
+docker-compose top
 
+docker-compose down 
+
+if [[ $(docker-compose top) ]]; then
+	docker-compose top
+else
+	echo "*  *  *  *  *  *  *  *  *"
+	echo "Processes have been deleted"
+	echo "*  *  *  *  *  *  *  *  *"
+fi
+
+# echo if there is no output that is was successful

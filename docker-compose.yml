@@ -1,6 +1,9 @@
-version: 'v1'
+version: '3.7'
 services:
   web:
     build: .
     ports:
       - "5000:5000"
+    # real time edit volume, pointing to workingdir fetched from Dockerfile
+    volumes:
+      - .:/app
